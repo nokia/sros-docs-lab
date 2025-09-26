@@ -22,7 +22,7 @@ A list of [show commands](#show-commands) is also provided in this guide.
 
 A summary of what this guide provides is shown below.
 
-![image](guide-summary.jpg)
+![image](./images/guide-summary.jpg)
 
 Disclaimer: This is not an exhaustive list of all the features and associated options on SR OS for services. This does not replace official documentation but is a one stop reference guide for basic service configuration. For more details on the features and options, please refer to the documentation links in each section.
 
@@ -32,11 +32,11 @@ We will be using the below topology with 4 Provider Edge (PE) routers, 2 Provide
 
 All configuration examples are shown for PE routers. Refer to the startup config files for configuration on other routers.
 
-<img src="physical-topology.svg" width="100%"/>
+<img src="./images/physical-topology.svg" width="100%"/>
 
 IPv4 Addressing:
 
-![image](/ip-topology.jpg)
+![image](./images/ip-topology.jpg)
 
 # SR-SIM image
 
