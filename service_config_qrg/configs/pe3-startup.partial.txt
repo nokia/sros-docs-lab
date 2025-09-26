@@ -2,13 +2,10 @@
 # Licensed under the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 
-/configure card 1 card-type i24-800g-qsfpdd-1
-/configure card 1 mda 1 mda-type m24-800g-qsfpdd-1
+/configure card 1 card-type iom-1 level he   
+/configure card 1 mda 1 mda-type me12-100gb-qsfp28
 /configure lag "lag-10" admin-state enable
 /configure lag "lag-10" mode access
-/configure lag "lag-10" lacp mode active
-/configure lag "lag-10" lacp system-id 00:00:00:00:03:04
-/configure lag "lag-10" lacp administrative-key 32768
 /configure { lag "lag-10" port 1/1/c11/1 }
 /configure { policy-options community "BLUE" member "target:64565:40" }
 /configure { policy-options community "RED" member "target:64555:30" }
@@ -45,22 +42,9 @@
 /configure port 1/1/c10/1 ethernet encap-type dot1q
 /configure port 1/1/c10/1 ethernet mtu 5000
 /configure port 1/1/c11 admin-state enable
-/configure port 1/1/c11 connector breakout c1-100g
+/configure port 1/1/c11 connector breakout c4-10g
 /configure port 1/1/c11/1 admin-state enable
 /configure port 1/1/c11/1 ethernet mode access
-/configure { port 1/1/c12 }
-/configure { port 1/1/c13 }
-/configure { port 1/1/c14 }
-/configure { port 1/1/c15 }
-/configure { port 1/1/c16 }
-/configure { port 1/1/c17 }
-/configure { port 1/1/c18 }
-/configure { port 1/1/c19 }
-/configure { port 1/1/c20 }
-/configure { port 1/1/c21 }
-/configure { port 1/1/c22 }
-/configure { port 1/1/c23 }
-/configure { port 1/1/c24 }
 /configure router "Base" autonomous-system 64500
 /configure router "Base" interface "To-P1" port 1/1/c3/1
 /configure router "Base" interface "To-P1" ipv4 bfd admin-state enable

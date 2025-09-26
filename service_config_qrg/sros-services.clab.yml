@@ -15,12 +15,11 @@ topology:
     kind: nokia_srsim
   kinds:
     nokia_srsim:
-      type: sr-1-24d
+      type: sr-1
       image: localhost/nokia/srsim:25.7.R1
-      license: config/license-srsim25.txt
-      components:
-        - slot: A
-        - slot: 1
+      license: configs/license-srsim25.txt
+      env:
+        NOKIA_SROS_MDA_1: me12-100gb-qsfp28
     linux:
       image: ghcr.io/srl-labs/network-multitool
   nodes:
