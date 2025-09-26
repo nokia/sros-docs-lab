@@ -1,13 +1,13 @@
 # Nokia SR OS Service Configuration
 
-This page provides the basic step-by-step configuration required to set up services on a Nokia 7750 Service Router. All the required feature sets for each service type are covered here with configuration and show examples. Most sections also provide links to Nokia documentation for further reading.
+This page provides the basic step-by-step configuration required to set up services on a Nokia 7750 Service Router. Minimum required feature sets for each service type are covered here with configuration and show examples. Most sections also provide links to Nokia documentation for further reading.
 
 | Contributors | Handle |
 |---|---|
 | Mohammad Zaman | [mfzhsn](https://github.com/mfzhsn) |
 | Saju Salahudeen | [sajusal](https://github.com/sajusal) |
 
-All configurations are in MD-CLI flat format. Reference chassis is 7750 SR-1-24D and software version is SR OS 25.3.R1. Use `show system info` command to verify your router's chassis model and software version.
+All configurations are in MD-CLI flat format. Reference chassis is 7750 SR-1 and software version is SR OS 25.7.R1. Use `show system info` command to verify your router's chassis model and software version.
 
 The following services are covered in this guide:
 
@@ -22,7 +22,7 @@ A list of [show commands](#show-commands) is also provided in this guide.
 
 A summary of what this guide provides is shown below.
 
-![image](guide-summary.jpg)
+![image](./images/guide-summary.jpg)
 
 Disclaimer: This is not an exhaustive list of all the features and associated options on SR OS for services. This does not replace official documentation but is a one stop reference guide for basic service configuration. For more details on the features and options, please refer to the documentation links in each section.
 
@@ -30,17 +30,45 @@ Disclaimer: This is not an exhaustive list of all the features and associated op
 
 We will be using the below topology with 4 Provider Edge (PE) routers, 2 Provider (P) routers and 4 Customer Edge (CE) routers.
 
-All configuration examples are shown for PE routers. Refer to the startup config files for configuration on other routers.
+All configuration examples shown below are for PE routers. Refer to the startup config files for configuration on other routers.
 
-<img src="physical-topology.svg" width="100%"/>
+<img src="./images/physical-topology.svg" width="100%"/>
 
 IPv4 Addressing:
 
-![image](/ip-topology.jpg)
+![image](./images/ip-topology.jpg)
+
+# SR-SIM image
+
+The containerlab topology uses a SR-SIM native container image. Follow the instructions in [SR-SIM Guide](https://documentation.nokia.com/sr/25-7/7750-sr/titles/sr-sim-installation-setup.html) to load the image to your docker environment.
+
+Contact your Account team to obtain a SR-SIM license.
+
+# Deploying the lab
+
+Clone this repo to your local environment:
+
+```
+git clone https://github.com/sajusal/sros-docs-lab.git
+```
+
+Navigate to the directory for this lab:
+
+```
+cd service_config_qrg
+```
+
+Ensure SR-SIM license is copied.
+
+Deploy the lab:
+
+```
+clab dep
+```
 
 # MD-CLI Command Reference
 
-Here's a reference table with some commonly used commands.
+Below is a reference table with some commonly used commands for CLI navigation.
 
 | Action | Command |
 | --- | --- |
@@ -59,11 +87,11 @@ Here's a reference table with some commonly used commands.
 
 # Hardware Configuration
 
-Assuming this is a brand new router, the cards should be configured before we proceed with the peering configuration. If this is already done, you can skip this section.
+Assuming this is a brand new router, the cards should be configured before we proceed with the service configuration. If this is already done, you can skip this section.
 
-The card and mda types depend on the variant of the 7750 SR in use. The equipped card and mda types can be seen using the `show card state` command.
+The card and mda types depend on the variant of the chassis in use. The equipped card and mda types can be seen using the `show card state` command.
 
-Our topology is using a fixed form factor chassis (SR-1-24D) and no hardware configuration is required on this chassis.
+The reference topology is using a fixed form factor chassis (SR-1).
 
 For modular systems, the following configuration should be completed to bring up the line card modules. The example config below is for a 7750 SR-2se. Choose the correct card type and level for your chassis.
 
@@ -497,7 +525,7 @@ Refer to the `show commands` section in this guide for relevant QoS show command
 
 A service model in SR OS uses the following logical entities to construct a service.
 
-![image](service-components.jpg)
+![image](./images/service-components.jpg)
 
 - Service Access Point (SAP) - identifies the customer facing interface with null, dot1 or qinq encapsulation.
 
@@ -557,7 +585,7 @@ For more details on Epipe, visit [SR OS Epipe Documentation](https://documentati
 
 The epipe topology for this example is shown below:
 
-![image](epipe-topology.jpg)
+![image](./images/epipe-topology.jpg)
 
 An Epipe will be created to establish communication between the 2 CE devices. LDP will be used as the tunneling protocol. Refer to `LDP` section in this guide for LDP configuration.
 
@@ -662,7 +690,7 @@ For more details on VPLS, visit [SR OS VPLS Documentation](https://documentation
 
 The vpls topology for this example is shown below:
 
-![image](vpls-topology.jpg)
+![image](./images/vpls-topology.jpg)
 
 A VPLS service will be created to establish communication between the 2 clients. RSVP-TE LSP will be used as the tunelling protocol. Refer to `RSVP-TE` section in this guide for relevant LSP configuration.
 
@@ -772,7 +800,7 @@ For more details on VPRN, visit [SR OS VPRN Documentation](https://documentation
 
 The vprn topology for this example is shown below:
 
-![image](vprn-topology.jpg)
+![image](./images/vprn-topology.jpg)
 
 Two VPRNs - RED and BLUE will be created on PE1 and PE3 to establish communication between the Clients on either sides. SR-ISIS will be used as the tunneling protocol. Refer to `Segment Routing` section in this guide for SR-ISIS configuration.
 
@@ -958,7 +986,7 @@ For more details on IES, visit [SR OS IES Documentation](https://documentation.n
 
 The IES topology for this example is shown below:
 
-![image](ies-topology.png)
+![image](./images/ies-topology.png)
 
 An IES service will be created to establish communication between the Layer 2 Clients. The routes are exchanged from the global routing table to the IES service. Routed VPLS or rvpls (commonly called IRB) is configured towards the customer to collect the traffic and forward it to the IES service. The rvpls service is configured with a SAP that acts as the access point.
 
@@ -1085,7 +1113,7 @@ For more details on EVPN-VPWS, visit [SR OS EVPN Documentation](https://document
 
 The EVPN-VPWS topology for this example is shown below:
 
-![image](vpws-topology.jpg)
+![image](./images/vpws-topology.jpg)
 
 An EVPN-VPWS service will be created to establish communication between the Clients. SR-TE will be used as the transport protocol. Refer to `SR-TE` section in this guide for the relevant SR-TE configuration.
 
@@ -1206,7 +1234,7 @@ For more details on EVPN-MPLS, visit [SR OS EVPN Documentation](https://document
 
 The EVPN-MPLS topology for this example is shown below:
 
-![image](l2-evpn-topology.png)
+![image](./images/l2-evpn-topology.png)
 
 The client on either side is multi-homed to 2 PE devices. An EVPN-MPLS service will be created to establish communication between the Clients. SR-ISIS will be used as the transport protocol. Refer to `Segment Routing` section in this guide for the relevant SR-ISIS configuration.
 
@@ -1353,6 +1381,8 @@ PING 192.168.60.2 (192.168.60.2) 56(84) bytes of data.
 100 packets transmitted, 100 received, 0% packet loss, time 99142ms
 rtt min/avg/max/mdev = 4.488/5.589/16.327/1.665 ms
 ```
+
+NOTE: there will be DUP packets for the first few seconds while MAC learning is in progress.
 
 # show commands
 
