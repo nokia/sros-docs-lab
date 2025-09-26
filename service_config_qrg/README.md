@@ -30,7 +30,7 @@ Disclaimer: This is not an exhaustive list of all the features and associated op
 
 We will be using the below topology with 4 Provider Edge (PE) routers, 2 Provider (P) routers and 4 Customer Edge (CE) routers.
 
-All configuration examples are shown for PE routers. Refer to the startup config files for configuration on other routers.
+All configuration examples shown below are for PE routers. Refer to the startup config files for configuration on other routers.
 
 <img src="./images/physical-topology.svg" width="100%"/>
 
@@ -44,9 +44,31 @@ The containerlab topology uses a SR-SIM native container image. Follow the instr
 
 Contact your Account team to obtain a SR-SIM license.
 
+# Deploying the lab
+
+Clone this repo to your local environment:
+
+```
+git clone https://github.com/sajusal/sros-docs-lab.git
+```
+
+Navigate to the directory for this lab:
+
+```
+cd sros_service_qrg
+```
+
+Ensure SR-SIM license is copied.
+
+Deploy the lab:
+
+```
+clab dep
+```
+
 # MD-CLI Command Reference
 
-Here's a reference table with some commonly used commands.
+Below is a reference table with some commonly used commands for CLI navigation.
 
 | Action | Command |
 | --- | --- |
@@ -65,11 +87,11 @@ Here's a reference table with some commonly used commands.
 
 # Hardware Configuration
 
-Assuming this is a brand new router, the cards should be configured before we proceed with the peering configuration. If this is already done, you can skip this section.
+Assuming this is a brand new router, the cards should be configured before we proceed with the service configuration. If this is already done, you can skip this section.
 
-The card and mda types depend on the variant of the 7750 SR in use. The equipped card and mda types can be seen using the `show card state` command.
+The card and mda types depend on the variant of the chassis in use. The equipped card and mda types can be seen using the `show card state` command.
 
-Our topology is using a fixed form factor chassis (SR-1-24D) and no hardware configuration is required on this chassis.
+The reference topology is using a fixed form factor chassis (SR-1-24D).
 
 For modular systems, the following configuration should be completed to bring up the line card modules. The example config below is for a 7750 SR-2se. Choose the correct card type and level for your chassis.
 
@@ -503,7 +525,7 @@ Refer to the `show commands` section in this guide for relevant QoS show command
 
 A service model in SR OS uses the following logical entities to construct a service.
 
-![image](service-components.jpg)
+![image](./images/service-components.jpg)
 
 - Service Access Point (SAP) - identifies the customer facing interface with null, dot1 or qinq encapsulation.
 
@@ -563,7 +585,7 @@ For more details on Epipe, visit [SR OS Epipe Documentation](https://documentati
 
 The epipe topology for this example is shown below:
 
-![image](epipe-topology.jpg)
+![image](./images/epipe-topology.jpg)
 
 An Epipe will be created to establish communication between the 2 CE devices. LDP will be used as the tunneling protocol. Refer to `LDP` section in this guide for LDP configuration.
 
@@ -668,7 +690,7 @@ For more details on VPLS, visit [SR OS VPLS Documentation](https://documentation
 
 The vpls topology for this example is shown below:
 
-![image](vpls-topology.jpg)
+![image](./images/vpls-topology.jpg)
 
 A VPLS service will be created to establish communication between the 2 clients. RSVP-TE LSP will be used as the tunelling protocol. Refer to `RSVP-TE` section in this guide for relevant LSP configuration.
 
@@ -778,7 +800,7 @@ For more details on VPRN, visit [SR OS VPRN Documentation](https://documentation
 
 The vprn topology for this example is shown below:
 
-![image](vprn-topology.jpg)
+![image](./images/vprn-topology.jpg)
 
 Two VPRNs - RED and BLUE will be created on PE1 and PE3 to establish communication between the Clients on either sides. SR-ISIS will be used as the tunneling protocol. Refer to `Segment Routing` section in this guide for SR-ISIS configuration.
 
@@ -964,7 +986,7 @@ For more details on IES, visit [SR OS IES Documentation](https://documentation.n
 
 The IES topology for this example is shown below:
 
-![image](ies-topology.png)
+![image](./images/ies-topology.png)
 
 An IES service will be created to establish communication between the Layer 2 Clients. The routes are exchanged from the global routing table to the IES service. Routed VPLS or rvpls (commonly called IRB) is configured towards the customer to collect the traffic and forward it to the IES service. The rvpls service is configured with a SAP that acts as the access point.
 
@@ -1091,7 +1113,7 @@ For more details on EVPN-VPWS, visit [SR OS EVPN Documentation](https://document
 
 The EVPN-VPWS topology for this example is shown below:
 
-![image](vpws-topology.jpg)
+![image](./images/vpws-topology.jpg)
 
 An EVPN-VPWS service will be created to establish communication between the Clients. SR-TE will be used as the transport protocol. Refer to `SR-TE` section in this guide for the relevant SR-TE configuration.
 
@@ -1212,7 +1234,7 @@ For more details on EVPN-MPLS, visit [SR OS EVPN Documentation](https://document
 
 The EVPN-MPLS topology for this example is shown below:
 
-![image](l2-evpn-topology.png)
+![image](./images/l2-evpn-topology.png)
 
 The client on either side is multi-homed to 2 PE devices. An EVPN-MPLS service will be created to establish communication between the Clients. SR-ISIS will be used as the transport protocol. Refer to `Segment Routing` section in this guide for the relevant SR-ISIS configuration.
 
