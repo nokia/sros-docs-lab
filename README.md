@@ -2,7 +2,7 @@
 
 This repository contains labs referenced in SR OS product documentation.
 
-Please read the license file here.
+Please read the license file [here](./LICENSE).
 
 Labs referenced in the following SR OS documents are available:
 
