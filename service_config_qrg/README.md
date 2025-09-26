@@ -1382,6 +1382,8 @@ PING 192.168.60.2 (192.168.60.2) 56(84) bytes of data.
 rtt min/avg/max/mdev = 4.488/5.589/16.327/1.665 ms
 ```
 
+NOTE: there will be DUP packets for the first few seconds while MAC learning is in progress.
+
 # show commands
 
 ## Hardware and System
