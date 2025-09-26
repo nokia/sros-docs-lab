@@ -91,7 +91,7 @@ Assuming this is a brand new router, the cards should be configured before we pr
 
 The card and mda types depend on the variant of the chassis in use. The equipped card and mda types can be seen using the `show card state` command.
 
-The reference topology is using a fixed form factor chassis (SR-1-24D).
+The reference topology is using a fixed form factor chassis (SR-1).
 
 For modular systems, the following configuration should be completed to bring up the line card modules. The example config below is for a 7750 SR-2se. Choose the correct card type and level for your chassis.
 
