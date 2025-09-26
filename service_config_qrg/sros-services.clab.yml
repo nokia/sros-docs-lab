@@ -1,3 +1,7 @@
+# Copyright 2025 Nokia
+# Licensed under the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+
 name: sros-services
 
 mgmt:
@@ -12,8 +16,8 @@ topology:
   kinds:
     nokia_srsim:
       type: sr-1-24d
-      image: registry.srlinux.dev/pub/nokia_srsim:25.7.R1
-      license: license-srsim25.txt
+      image: localhost/nokia/srsim:25.7.R1
+      license: config/license-srsim25.txt
       components:
         - slot: A
         - slot: 1

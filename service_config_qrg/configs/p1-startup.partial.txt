@@ -1,3 +1,7 @@
+# Copyright 2025 Nokia
+# Licensed under the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+
 /configure card 1 card-type i24-800g-qsfpdd-1
 /configure card 1 mda 1 mda-type m24-800g-qsfpdd-1
 /configure port 1/1/c1 admin-state enable

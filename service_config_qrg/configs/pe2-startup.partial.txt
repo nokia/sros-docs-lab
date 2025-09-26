@@ -1,19 +1,23 @@
+# Copyright 2025 Nokia
+# Licensed under the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+
 /configure card 1 card-type i24-800g-qsfpdd-1
 /configure card 1 mda 1 mda-type m24-800g-qsfpdd-1
 /configure lag "lag-10" admin-state enable
 /configure lag "lag-10" mode access
 /configure lag "lag-10" lacp mode active
-/configure lag "lag-10" lacp system-id 00:00:00:00:03:04
+/configure lag "lag-10" lacp system-id 00:00:00:00:01:02
 /configure lag "lag-10" lacp administrative-key 32768
 /configure { lag "lag-10" port 1/1/c11/1 }
-/configure { port 1/1/c1 }
-/configure { port 1/1/c2 }
-/configure port 1/1/c3 admin-state enable
-/configure port 1/1/c3 connector breakout c1-100g
-/configure port 1/1/c3/1 admin-state enable
-/configure port 1/1/c4 admin-state enable
-/configure port 1/1/c4 connector breakout c1-100g
-/configure port 1/1/c4/1 admin-state enable
+/configure port 1/1/c1 admin-state enable
+/configure port 1/1/c1 connector breakout c1-100g
+/configure port 1/1/c1/1 admin-state enable
+/configure port 1/1/c2 admin-state enable
+/configure port 1/1/c2 connector breakout c1-100g
+/configure port 1/1/c2/1 admin-state enable
+/configure { port 1/1/c3 }
+/configure { port 1/1/c4 }
 /configure { port 1/1/c5 }
 /configure { port 1/1/c6 }
 /configure { port 1/1/c7 }
@@ -38,26 +42,26 @@
 /configure { port 1/1/c23 }
 /configure { port 1/1/c24 }
 /configure router "Base" autonomous-system 64500
-/configure router "Base" interface "To-P1" port 1/1/c4/1
+/configure router "Base" interface "To-P1" port 1/1/c2/1
 /configure router "Base" interface "To-P1" ipv4 bfd admin-state enable
-/configure router "Base" interface "To-P1" ipv4 primary address 172.16.10.14
+/configure router "Base" interface "To-P1" ipv4 primary address 172.16.10.10
 /configure router "Base" interface "To-P1" ipv4 primary prefix-length 31
-/configure router "Base" interface "To-P2" port 1/1/c3/1
+/configure router "Base" interface "To-P2" port 1/1/c1/1
 /configure router "Base" interface "To-P2" ipv4 bfd admin-state enable
-/configure router "Base" interface "To-P2" ipv4 primary address 172.16.10.7
+/configure router "Base" interface "To-P2" ipv4 primary address 172.16.10.2
 /configure router "Base" interface "To-P2" ipv4 primary prefix-length 31
-/configure router "Base" interface "system" ipv4 primary address 10.10.10.4
+/configure router "Base" interface "system" ipv4 primary address 10.10.10.2
 /configure router "Base" interface "system" ipv4 primary prefix-length 32
 /configure router "Base" mpls-labels sr-labels start 21000
 /configure router "Base" mpls-labels sr-labels end 22000
-/configure router "Base" bgp router-id 10.10.10.4
+/configure router "Base" bgp router-id 10.10.10.2
 /configure router "Base" bgp group "pe" peer-as 64500
 /configure router "Base" bgp neighbor "10.10.10.1" group "pe"
 /configure router "Base" bgp neighbor "10.10.10.1" family evpn true
-/configure router "Base" bgp neighbor "10.10.10.2" group "pe"
-/configure router "Base" bgp neighbor "10.10.10.2" family evpn true
 /configure router "Base" bgp neighbor "10.10.10.3" group "pe"
 /configure router "Base" bgp neighbor "10.10.10.3" family evpn true
+/configure router "Base" bgp neighbor "10.10.10.4" group "pe"
+/configure router "Base" bgp neighbor "10.10.10.4" family evpn true
 /configure router "Base" isis 0 admin-state enable
 /configure router "Base" isis 0 advertise-router-capability as
 /configure router "Base" isis 0 prefix-attributes-tlv true
@@ -72,7 +76,9 @@
 /configure router "Base" isis 0 interface "To-P2" level-capability 2
 /configure router "Base" isis 0 interface "To-P2" level 2 metric 100
 /configure router "Base" isis 0 interface "system" passive true
-/configure router "Base" isis 0 interface "system" ipv4-node-sid index 4
+/configure router "Base" isis 0 interface "system" ipv4-node-sid index 2
+/configure router "Base" isis 0 level 1 wide-metrics-only true
+/configure router "Base" isis 0 level 2 wide-metrics-only true
 /configure router "Base" ldp interface-parameters interface "To-P1" ipv4 admin-state enable
 /configure router "Base" ldp interface-parameters interface "To-P2" ipv4 admin-state enable
 /configure router "Base" mpls admin-state enable
@@ -91,7 +97,7 @@
 /configure { router "Base" rsvp interface "To-P2" }
 /configure { router "Base" rsvp interface "system" }
 /configure service system bgp evpn ethernet-segment "ES-1" admin-state enable
-/configure service system bgp evpn ethernet-segment "ES-1" esi 0x00343434343434000103
+/configure service system bgp evpn ethernet-segment "ES-1" esi 0x00121212121212000101
 /configure service system bgp evpn ethernet-segment "ES-1" multi-homing-mode all-active
 /configure { service system bgp evpn ethernet-segment "ES-1" association lag "lag-10" }
 /configure service vpls "EVPN-MPLS" admin-state enable
