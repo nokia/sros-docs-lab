@@ -17,7 +17,7 @@ topology:
     nokia_srsim:
       type: sr-1-24d
       image: localhost/nokia/srsim:25.7.R1
-      license: config/license-srsim25.txt
+      license: configs/license-srsim25.txt
       components:
         - slot: A
         - slot: 1
