@@ -1,5 +1,9 @@
-/configure card 1 card-type i24-800g-qsfpdd-1
-/configure card 1 mda 1 mda-type m24-800g-qsfpdd-1
+# Copyright 2025 Nokia
+# Licensed under the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+
+/configure card 1 card-type iom-1 level he   
+/configure card 1 mda 1 mda-type me12-100gb-qsfp28
 /configure port 1/1/c1 admin-state enable
 /configure port 1/1/c1 connector breakout c1-100g
 /configure port 1/1/c1/1 admin-state enable
@@ -12,44 +16,24 @@
 /configure port 1/1/c4 admin-state enable
 /configure port 1/1/c4 connector breakout c1-100g
 /configure port 1/1/c4/1 admin-state enable
-/configure { port 1/1/c5 }
-/configure { port 1/1/c6 }
-/configure { port 1/1/c7 }
-/configure { port 1/1/c8 }
-/configure { port 1/1/c9 }
-/configure { port 1/1/c10 }
-/configure { port 1/1/c11 }
-/configure { port 1/1/c12 }
-/configure { port 1/1/c13 }
-/configure { port 1/1/c14 }
-/configure { port 1/1/c15 }
-/configure { port 1/1/c16 }
-/configure { port 1/1/c17 }
-/configure { port 1/1/c18 }
-/configure { port 1/1/c19 }
-/configure { port 1/1/c20 }
-/configure { port 1/1/c21 }
-/configure { port 1/1/c22 }
-/configure { port 1/1/c23 }
-/configure { port 1/1/c24 }
 /configure router "Base" autonomous-system 64500
-/configure router "Base" interface "To-PE1" port 1/1/c1/1
+/configure router "Base" interface "To-PE1" port 1/1/c2/1
 /configure router "Base" interface "To-PE1" ipv4 bfd admin-state enable
-/configure router "Base" interface "To-PE1" ipv4 primary address 172.16.10.1
+/configure router "Base" interface "To-PE1" ipv4 primary address 172.16.10.9
 /configure router "Base" interface "To-PE1" ipv4 primary prefix-length 31
-/configure router "Base" interface "To-PE2" port 1/1/c2/1
+/configure router "Base" interface "To-PE2" port 1/1/c1/1
 /configure router "Base" interface "To-PE2" ipv4 bfd admin-state enable
-/configure router "Base" interface "To-PE2" ipv4 primary address 172.16.10.11
+/configure router "Base" interface "To-PE2" ipv4 primary address 172.16.10.3
 /configure router "Base" interface "To-PE2" ipv4 primary prefix-length 31
-/configure router "Base" interface "To-PE3" port 1/1/c3/1
+/configure router "Base" interface "To-PE3" port 1/1/c4/1
 /configure router "Base" interface "To-PE3" ipv4 bfd admin-state enable
-/configure router "Base" interface "To-PE3" ipv4 primary address 172.16.10.4
+/configure router "Base" interface "To-PE3" ipv4 primary address 172.16.10.13
 /configure router "Base" interface "To-PE3" ipv4 primary prefix-length 31
-/configure router "Base" interface "To-PE4" port 1/1/c4/1
+/configure router "Base" interface "To-PE4" port 1/1/c3/1
 /configure router "Base" interface "To-PE4" ipv4 bfd admin-state enable
-/configure router "Base" interface "To-PE4" ipv4 primary address 172.16.10.15
+/configure router "Base" interface "To-PE4" ipv4 primary address 172.16.10.6
 /configure router "Base" interface "To-PE4" ipv4 primary prefix-length 31
-/configure router "Base" interface "system" ipv4 primary address 10.10.10.10
+/configure router "Base" interface "system" ipv4 primary address 10.10.10.20
 /configure router "Base" interface "system" ipv4 primary prefix-length 32
 /configure router "Base" mpls-labels sr-labels start 21000
 /configure router "Base" mpls-labels sr-labels end 22000
@@ -73,7 +57,7 @@
 /configure router "Base" isis 0 interface "To-PE4" level-capability 2
 /configure router "Base" isis 0 interface "To-PE4" level 2 metric 100
 /configure router "Base" isis 0 interface "system" passive true
-/configure router "Base" isis 0 interface "system" ipv4-node-sid index 10
+/configure router "Base" isis 0 interface "system" ipv4-node-sid index 11
 /configure router "Base" isis 0 level 1 wide-metrics-only true
 /configure router "Base" isis 0 level 2 wide-metrics-only true
 /configure router "Base" ldp interface-parameters interface "To-PE1" ipv4 admin-state enable
