@@ -55,7 +55,7 @@ git clone https://github.com/sajusal/sros-docs-lab.git
 Navigate to the directory for this lab:
 
 ```
-cd sros_service_qrg
+cd service_config_qrg
 ```
 
 Ensure SR-SIM license is copied.
