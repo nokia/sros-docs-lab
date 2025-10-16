@@ -49,7 +49,7 @@ Contact your Account team to obtain a SR-SIM license.
 Clone this repo to your local environment:
 
 ```
-git clone https://github.com/sajusal/sros-docs-lab.git
+git clone https://github.com/nokia/sros-docs-lab.git
 ```
 
 Navigate to the directory for this lab:
